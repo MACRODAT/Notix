@@ -6,6 +6,7 @@ Notix is a notebook management suite suitable as :
     - Many other specific uses.
 
 ## Concept
+
 Personal accounts are owned by different individuals. These individuals may subsequently join different groups, where they have instant access to the blog created by their group.
 
 > This project is created using react and node js, along with 
@@ -13,9 +14,11 @@ Personal accounts are owned by different individuals. These individuals may subs
 > boostrap, and many more.
 
 ## To run
+
 Please serve using following code :
 '''npm start'''
 
 
 ## Development
+
 Please refer to our dev notes [found here](/plan.md)
