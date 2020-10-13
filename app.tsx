@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './styles/app.css';
-import * as theming from './theming/theming';
+import './UI/styles/app.css';
+import * as theming from './UI/theming/theming';
 
-import NavMenuNoLogin from './navs/navMenuNoLogin';
+import NavMenuNoLogin from './UI/navs/navMenuNoLogin';
 
 class App extends React.Component {
 
@@ -26,12 +26,17 @@ class App extends React.Component {
     {
         if (theme === 'light')
         {
-        theming.applyTheme(theming.lightTheme);
+            theming.applyTheme(theming.lightTheme);
         }
         if (theme === 'dark')
-        {
-        theming.applyTheme(theming.darkTheme)
+        {   
+            theming.applyTheme(theming.darkTheme)
         }
+    }
+
+    componentWillMount()
+    {
+        this.applyTheme('dark');
     }
 
     render()
