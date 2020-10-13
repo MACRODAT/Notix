@@ -1,0 +1,17 @@
+html, .content, Table, th, td {
+    background: var(--color-surface);
+    color: var(--color-solid);
+  }
+  
+  .spacer
+  {
+    margin : 10px;
+    padding: 20px;
+  }
+  
+  .center
+  {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+  }

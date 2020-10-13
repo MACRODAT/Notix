@@ -1,15 +1,16 @@
-# NOTIX PROJECT
+# MOSWADA PROJECT
 
-Notix is a notebook management suite suitable as :
-    - Personal notes taking app, and personal blog connection different devices.
-    - Team work, discussing ideas, sharing pictures and documents as well as live chat.
-    - Many other specific uses.
+MOSWADA is a digital blockchain-based certification project for diplomas and academic papers. The aim is the use of a decentralised network for approving academic documents as well as diplomas. It will greatly facilitate the sharing and verification of these assets (diplomas for students, academic research papers...) 
 
 ## Concept
 
-Personal accounts are owned by different individuals. These individuals may subsequently join different groups, where they have instant access to the blog created by their group.
+Personal accounts are owned by different individuals. Each has access to the block-chain, where they can contribute by approving or disapproving academic papers.
+Public accounts, owned by institutions, could issue diplomas for students. These are added to the blockchain. Then they may be publicly accessible for anyone and may provide a verified certification process.
+All this data is decentralized, and may be safe-kept in a centralized location as a backup.
 
-> This project is created using react and node js, along with 
+> This project is created using react and node js.
+> The block chain is run using NODE JS.
+> The use of electron js
 > different extensions and helpers, including react strap, 
 > boostrap, and many more.
 
