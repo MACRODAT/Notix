@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Account = (props, state) => {
+const Home = (props, state) => {
     return (
         <h1>
-            Login
+            MUSWADA APP
         </h1>
     )
 };
 
-export default Account;
+export default Home;

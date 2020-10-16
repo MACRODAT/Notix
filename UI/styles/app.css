@@ -15,3 +15,26 @@ html, .content, Table, th, td {
     width: 50%;
     margin: auto;
   }
+
+  .draggable {
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+  }
+
+  .noDrag
+  {
+    -webkit-app-region: no-drag;
+  }
+
+  .noLinkStyle
+  {
+    text-decoration: none;
+    color : var(--color-solid);
+  }
+
+  .noLinkStyle:hover
+  {
+    text-decoration: underline;
+    
+    color : var(--color-surface);
+  }
