@@ -1,8 +1,14 @@
+import session from "../../storage/localStorage";
+
 type user = {
     userID : string,
     name : string,
     password : string
 };
 
-export type {user};
+interface IState {
+    user : session,
+}
+
+export type {user, IState};
 

@@ -9,12 +9,22 @@ import { Redirect, Router, BrowserRouter } from 'react-router-dom';
 import HistoryNavigator from './UI/helpers/historyNavigator';
 import { ToastHeader } from 'reactstrap';
 
+
+import * as mappers from './loginUtils';
+import {connect } from 'react-redux';
+import NavMenuWithLogin from './UI/navs/navMenuWithLogin';
+
 class App extends React.Component {
 
     state = {
         goto : '',
         activeTheme : '',
         switchToVerticalNav : false,
+    }
+
+    props =  {
+        loggedIn : null,
+        logout : null,
     }
 
     constructor(props)
@@ -56,11 +66,20 @@ class App extends React.Component {
         // 
 
         return (
+                
                     <div className="content">
                         <div className="draggable">
-                            <NavMenuNoLogin   verticalToggle={() => this.switchNav.bind(this)()} 
+                            {
+                            this.props.loggedIn ? 
+                                <NavMenuWithLogin   verticalToggle={() => this.switchNav.bind(this)()} 
                                 redirecter={(path) => this.goto(path)} 
                                 toggleTheme={() => this.applyTheme(this.state.activeTheme === 'dark' ? 'light' : 'dark' )} />
+                            :
+                                <NavMenuNoLogin   verticalToggle={() => this.switchNav.bind(this)()} 
+                                redirecter={(path) => this.goto(path)} 
+                                toggleTheme={() => this.applyTheme(this.state.activeTheme === 'dark' ? 'light' : 'dark' )} />
+                            }
+                            
                         </div>
                         <BrowserRouter>
                             <Routing />
@@ -74,4 +93,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default connect(mappers.mapStateToProps, mappers.mapDispatchToProps)(App);

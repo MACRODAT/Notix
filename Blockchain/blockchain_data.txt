@@ -1,0 +1,31 @@
+
+Name
+    NOTIX
+Description
+    YOUR DOCUMENTS AND CERTIFICATES CERTIFIED, SHARED.
+Plan
+    Shared Sandbox - FREE Cancel Plan
+
+    Ready to write to Public Factom? Create a new application and select a Public Factom plan.
+
+Status
+      Live
+
+API Base URL
+    https://ephemeral.api.factom.com/v1
+
+Application ID
+Send this in the header of each API Request.
+    2814cb97 
+
+Application Keys Send this in the header of each API request to authenticate.
+    fe5beda3e4693668e02919f5e9ee5d82
+    check
+    Selected as primary
+
+Sample cURL Request
+    curl --request GET \
+    --url https://ephemeral.api.factom.com/v1 \
+    --header "Content-Type: application/json" \
+    --header "app_id: 2814cb97" \
+    --header "app_key: fe5beda3e4693668e02919f5e9ee5d82"

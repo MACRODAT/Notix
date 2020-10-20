@@ -17,7 +17,8 @@ const Routing = (props, state) => (
     <>
         <Route exact path="/" render={(props) =>  routeStyler({component : Home, props} )} />
         <Route exact path="/terms" render={(props) =>  routeStyler({component : Terms, props} )} />
-        <Route  path="/login" render={(props) =>  routeStyler({component : Login, props} )} />
+        <Route  path="/login" component={Login} />
+        {/* <Route  path="/login" render={(props) =>  routeStyler({component : Login, props} )} /> */}
         {/* <Route  path="/signout" render={(props) =>  routeStyler({component : Signout, props} )} /> */}
         {/* <Route path="/todo" component={TODO} /> */}
         <Route  path="/register" render={(props) =>  routeStyler({component : Register, props} )} />

@@ -2,13 +2,17 @@ import type {user as usr} from '../store/core/core';
  
 class session {
     user : usr;
+    isLoggedIn : boolean;
 
     constructor(){
         this.user = {
             userID  : '',
             name : '',
-            password : ''
+            password : '',
         }
+        
+        // initially, we are NOT logged IN.
+        this.isLoggedIn = false;
 
         this.checkLS();
     }
@@ -21,24 +25,26 @@ class session {
         {
                 var cr = String(localStorage.getItem('name') ?? '');
                 var ex = String(localStorage.getItem('password') ?? '');
-                if ( idd !== '')
+                if ( cr !== '')
                 {
                     this.login(idd, 
                             cr, 
                             ex);
                 }
                 else {
-                    this.login('', '', '');
+                    this.genNoLoginData();
                 }
         }
     }
 
-    isLoggedIn = () => {
-        return this.user.userID !== '';
+    isLoggedInFunc = () => {
+        return this.isLoggedIn;
     }
 
     signOut()
     {
+        this.isLoggedIn = false;
+
         this.user.userID = '';
         this.user.name = '';
         this.user.password = '';
@@ -54,6 +60,12 @@ class session {
         this.user.name = name;
         this.user.password = password;
 
+        if (this.user.name.length > 0)
+        {
+            this.isLoggedIn = true;
+        }
+        console.log(this.user.userID);
+
         // persist ?
         if (true) // sometimes user does not wish to persist #TODO
         {
@@ -63,6 +75,11 @@ class session {
         }
     }
 
+    genNoLoginData()
+    {
+        this.user = {userID : '', name : 'loginError', password : ''};
+        this.isLoggedIn = false;
+    }
 
 }
 
