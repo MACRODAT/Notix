@@ -44,3 +44,4 @@ class block
         this.timestamp = timestamp;
     }
 }
+

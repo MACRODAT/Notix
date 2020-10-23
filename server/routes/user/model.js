@@ -8,10 +8,10 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    password : {
-        type: String,
-        required: true
-    },
+    // password : {
+    //     type: String, //////// not used in blockchain
+    //     required: true
+    // },
     email : {
         type: String,
         required: true,
@@ -24,7 +24,19 @@ const userSchema = mongoose.Schema({
     picture : {
         type : mongoose.SchemaTypes.ObjectId,
         ref: 'imageModel'
-    }
+    },
+    pKey : {
+        type : String,
+        required : true,
+    },
+    sKey : {
+        type : String,
+        required : true,
+    },
+    encPassphrase : {
+        type : Buffer,
+        required : true,
+    },
 });
 
 

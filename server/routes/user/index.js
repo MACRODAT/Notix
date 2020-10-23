@@ -11,6 +11,7 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.post('/login', jsonParser , controller.login);
+router.post('/logout', jsonParser , controller.logout);
 router.post('/itemize', verify, jsonParser,  controller.createItem)
 router.post('/register', jsonParser,  controller.register)
 router.post('/isUsernameTaken', jsonParser,  controller.isUsernameTaken)

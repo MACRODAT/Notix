@@ -62,6 +62,7 @@ export default class NavMenuWithLogin extends Component<props, state>{
         'ACCOUNT' : '/account',
         'TODO' : '/todo',
         'DOCS' : '/docs',
+        'SIGNOUT' : '/signout', 
     }
     
     getMenus()

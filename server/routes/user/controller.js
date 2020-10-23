@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const config = require('./../../config');
 const state = require('./../../state/state');
 
-salter = function() {
-    n = 0;
+let salter = function() {
+    let n = 0;
     while (n  > 10000 || n < 1000)
     {
        n = parseInt( Math.random() * 10000 );
@@ -23,41 +23,25 @@ module.exports = {
                 res.status(430).send({msg: 'No username / password match.'});
                 return; 
             }
-
-            user.comparePassword(req.body.password, (err, isMatch) => {
-                if (err) throw err;
-                //
-                if (isMatch){
-                    // let token = jwt.sign({id : user._id},  config.secret, {expiresIn: 86400});
-                    
-                    // Tokens used for access !
-                    let accessToken = jwt.sign({id : user._id}, config.privateKey, {
-                        algorithm: 'HS256',
-                        expiresIn: 86400
-                    });
-
-                    let refreshToken = jwt.sign({id : user._id}, config.privateKeyRefresh, {
-                        algorithm: 'HS256',
-                        expiresIn: 86400
-                    });
-
-                    // add this user to the table of active users
-                    state.loggedUsersTable.push(new state.userT('', user._id, -1, refreshToken));
-
-                    res.cookie("jwt", accessToken, {
-                        secure : true,
-                        httpOnly : true,
-                    });
-
-                    res.status(200).send({msg : 'Login Success', name : user.name, expiresIn : 86400});
-                } else{  
-                    
-                    console.log("wrong pass")
-                     res.status(430).send({msg: 'No username / password match.'});
-                }
-            } );
+            //
+            if (!config.login(user.sKey, user.pKey, req.body.password, user.encPassphrase))
+            {
+                // unsuccessful login
+                res.status(430).send({msg: 'No username / password match.'});
+            }
+            else {
+                // already logged in
+                res.status(200).send({msg : 'Login Success', name : user.name, expiresIn : 86400});
+            }
         })
 
+    },
+    logout: (req, res) => {
+        // logout from the current session 
+        // JUST REMOVE THE CONFIG KEYS
+        config.pKey = null;
+        config.sKey = null;
+        res.status(200).send({});
     },
     isUsernameTaken : (req, res) => {
         model.userModel.findOne({name : req.body.name }, (err, user) => {
@@ -71,13 +55,52 @@ module.exports = {
             req.body.picture = mongoose.Types.ObjectId();
         }
 
+        let crypt = require('crypto');
+
+        // set up encryption
+        let  { publicKey, privateKey }  = crypt.generateKeyPairSync('rsa', {
+            modulusLength : 2048,
+            publicKeyEncoding : {
+                type : 'spki',
+                format : 'pem',
+            },
+            privateKeyEncoding : {
+                type : 'pkcs1',
+                format : 'pem',
+                cipher : 'aes-256-cbc',
+                passphrase : req.body.password,
+            }
+        });
+
+        var e = require('../../config/Encryption');
+        let fakeLogin = new e.Encryption(privateKey, publicKey, req.body.password);
+        let encPass = '';
+        if (fakeLogin.checkLogin)
+        {
+            // basic check
+            encPass = fakeLogin.privateEncrypt(req.body.password);
+            if (! fakeLogin.login(privateKey, publicKey, req.body.password, encPass))
+            {
+                // problem in encryption
+                res.status(500).send({msg : 'critical bug'});
+            }
+        }  
+        else{
+            res.status(500).send({msg : 'Critical server error.'});
+        }
+
+        // YOU CAN HAVE ALL THE CONFIDENCE IN THE WORLD THAT
+        // THE ACCOUNT HAS BEEN SET UP CORRECTLY
 
         let newUser = new model.userModel ( {
             name : req.body.name,
             // picture : req.body.picture,
             email : req.body.email,
-            password : req.body.password,
+            // password : req.body.password,
             account_created : req.body.account_created,
+            pKey : publicKey,
+            sKey : privateKey, //TODO FIND A MORE SECURE METHOD
+            encPassphrase : encPass,
         });
 
         

@@ -11,6 +11,27 @@ function APIMiddleware({getState, dispatch}) {
         return function(action)
         {
             console.log(action);
+            if (action.type === ActionTypes.LOGOUT)
+            {
+                // request logout from backend
+                const HEADERS = {
+                    'Content-Type' : 'application/json'
+                }
+
+                Axios.post(globals.baseURL + '/' + globals.userURL + '/logout').then (function( res : AxiosResponse) {
+                    // console.log(res.data);
+                    action.succes = true;
+                    
+                    // redirect to register successful page
+                    const nextAction = next(action);
+                    //read next state
+                    const state = getState();
+                    // return the next action
+                    return nextAction;
+                });
+
+            }
+
             if (action.type === ActionTypes.SET_LOGIN)
             {
                 // some checks TODO

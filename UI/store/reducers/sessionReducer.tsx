@@ -30,6 +30,15 @@ function sessionReducer(state = initState, action) {
             )
         }
     }
+    if (action.type === ActionTypes.LOGOUT)
+    {
+        var noLogSession = (new session());
+        noLogSession.genNoLoginData();
+        state.user.signOut();
+        return Object.assign({}, state,
+                { user : noLogSession,}
+             )
+    }
 
     return state;
 }
