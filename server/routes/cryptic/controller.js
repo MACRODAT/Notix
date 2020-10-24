@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const models = require('./model');
 const axios = require('axios');
+const {transaction, block, blockchain} = require('./../../blockchain/main');
+
+const myBlockchain = new blockchain();
 
 module.exports = {
     getAllMessages : (req, res) => {
@@ -34,7 +37,13 @@ module.exports = {
             return null;
         }
 
-        return response.data.version;
+        return response.data.version; // API VERSION FOR  CERTIFICATE VERIFICATION
         
+    },
+
+    // create a transaction
+    createTransaction : (transaction) => {
+        // boolean return value
+        return myBlockchain.addtransaction(transaction);
     }
 }
