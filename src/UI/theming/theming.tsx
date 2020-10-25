@@ -10,7 +10,7 @@ export const lightTheme = {
     "--color-primary": "purple"
   };
   
-  export const applyTheme = nextTheme => {
+  export const applyTheme = (nextTheme : any) => {
       const theme = nextTheme;
       // console.log(theme);
       Object.keys(theme).map(key => {

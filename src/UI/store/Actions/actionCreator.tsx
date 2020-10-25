@@ -3,7 +3,7 @@ import * as Actions from './actionTypes';
 
 export const getLogin = () => {};
 
-export const setLogin = (id, name, password) => {
+export const setLogin = (id : any, name : any, password) => {
     return {
         type : Actions.SET_LOGIN,
         payload : {

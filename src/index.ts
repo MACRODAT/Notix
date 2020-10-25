@@ -35,7 +35,7 @@ function createWindow(){
     win.loadURL(
         isDev ? "http://localhost:3001" : 
             `file://${path.join(__dirname, '../build/index.html')}`)
-    win.on("closed", () => (win = null));
+    win.on("closed", () => (win = new BrowserWindow()));
 }
 
 app.on('ready', createWindow);

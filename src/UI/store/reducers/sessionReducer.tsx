@@ -7,7 +7,7 @@ const initState : IState = {
     user : new session(),
 }
 
-function sessionReducer(state = initState, action) {
+function sessionReducer(state = initState, action : any) {
     if (action.type === ActionTypes.SET_LOGIN)
     {
         if (action.data.user !== null)

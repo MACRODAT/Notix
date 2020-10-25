@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Terms = (props, state) => {
+const Terms = (props : any, state : any) => {
     return (
     <>
         <h1>

@@ -6,9 +6,9 @@ import Axios, { AxiosResponse } from 'axios';
 import globals from '../../helpers/globals';
 
 
-function APIMiddleware({getState, dispatch}) {
-    return function(next){
-        return function(action)
+function APIMiddleware({getState, dispatch} : any) {
+    return function(next : any){
+        return function(action : any)
         {
             console.log(action);
             if (action.type === ActionTypes.LOGOUT)

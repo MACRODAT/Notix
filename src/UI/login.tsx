@@ -11,19 +11,19 @@ import { user } from './store/core/core';
 import { setLogin } from './store/Actions/actionCreator';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state : any) => {
     return {
         session : state.user
     }
 }
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch : any) => (
     {
         meSetLogin : (user : user) => dispatch(setLogin(user.userID, user.name, user.password))
     }
 )
 
-const Login = ({session, meSetLogin}) => {
+const Login = ({session, meSetLogin} : any) => {
 
     const [identifier, setIdentifier] = useState(''); 
     const [password, setPassword] = useState(''); 

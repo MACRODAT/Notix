@@ -1,0 +1,10 @@
+"use strict";
+var router = require('express').Router();
+var controller = require('./controller');
+var verify = require('../../middleware/auth');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+var urlencodedparser = bodyParser.urlencoded({ extended: false });
+router.post('/save', jsonParser, controller.save);
+router.get('/get', jsonParser, controller.getAll);
+module.exports = router;

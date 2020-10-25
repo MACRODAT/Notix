@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const models = require('./model');
 const axios = require('axios');
-const {transaction, block, blockchain} = require('../../blockchain/main.js');
+const {transaction, block, blockchain} = require('../../blockchain/main.ts');
 
-const myBlockchain = blockchain();
+const myBlockchain = new blockchain();
 
 module.exports = {
     getAllMessages : (req, res) => {
