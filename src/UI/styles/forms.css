@@ -1,0 +1,41 @@
+/* .keepSmall{
+    margin: auto;
+    padding-top: 50px;
+    width: 40%;
+
+    align-self: center;
+} */
+
+
+.moveLeft{
+    margin: auto;
+    position: absolute;
+    right: 20px;
+}
+
+.biggerText{
+    font-size: 1.1em !important;
+    font-weight: 500;
+}
+
+@media (max-width : 800px)
+{
+    .keepSmall{
+        margin: auto;
+        padding-top: 50px;
+        width: 100%;
+    
+        align-self: center;
+    }
+}
+@media (min-width : 801px)
+{
+    .keepSmall{
+        margin: auto;
+        padding-top: 50px;
+        width: 60%;
+    
+        align-self: center;
+    }
+}
+

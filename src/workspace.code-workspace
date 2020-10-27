@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"notix"
+		],
+		"editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace"
+	}
+}
